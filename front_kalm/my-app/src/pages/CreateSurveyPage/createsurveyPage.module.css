@@ -1,0 +1,121 @@
+.page {
+    font-family: "MyFontRegular";
+    min-height: 100vh;
+}
+
+.heading {
+    font-size: 32px;
+    text-align: center;
+    padding: 30px 0 10px;
+    color: #24270d;
+}
+
+.form {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fbffe3;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+label {
+    font-size: 14px;
+    color: #24270d;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f3f3df;
+    font-size: 14px;
+}
+
+.questionBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: #f6f6e0;
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+.questionLabel {
+    font-size: 14px;
+    color: #24270d;
+    font-weight: bold;
+    text-align: left;
+}
+
+.answerFormat {
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.answerFormat select {
+    padding: 4px 8px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: none;
+    margin-left: 12px;
+    background-color: #e2e5c7;
+}
+
+.starsPreview {
+    font-size: 20px;
+    color: #d4b93f;
+    margin-top: 4px;
+}
+
+.textarea {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none;
+    min-height: 100px;
+    background-color: #f3f3df;
+}
+
+.addButton {
+    background-color: #24270d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-left: 1rem;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.submitButton {
+    background-color: #24270d;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.inputError {
+    border: 2px solid #d94b4b;
+    background-color: #ffeaea;
+}
+
+.errorPopup {
+    background-color: #ffdede;
+    border: 1px solid #d94b4b;
+    color: #7a1414;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: center;
+}

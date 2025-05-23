@@ -1,0 +1,110 @@
+.page{
+    display: grid;
+}
+
+.all_block{
+    justify-content: center;
+    margin-top: 40px;
+
+}
+
+.text1{
+    font-family: "MyFontRegular";
+    font-size: 36px;
+    color: rgba(36, 39, 13, 1);
+    margin-left: 38rem;
+    
+}
+
+.middle_form {
+    background-color: rgba(251, 255, 227, 1);
+    height: 600px;
+    overflow-y: auto;
+    width: 75rem;
+    padding: 30px 2rem;
+    border-radius: 30px;
+    margin-top: 11px;
+    margin-left: 7rem;
+    scrollbar-width: none; /* для Firefox */
+}
+
+.middle_form::-webkit-scrollbar {
+    display: none; /* для Chrome/Safari/Edge */
+}
+
+
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-left: 7rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-family: "MyFontRegular";
+}
+
+.filters select {
+    font-family: "MyFontRegular";
+    font-size: 16px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    background-color: #FBFFE3;
+    font-family: "MyFontRegular";
+}
+
+
+.card {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ccc;
+    margin: 0 2rem;
+    font-family: "MyFontRegular";
+}
+
+.statusDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    font-family: "MyFontRegular";
+}
+.active { background-color: green; }
+.view { background-color: #c1b300; }
+.disabled { background-color: darkred; }
+
+.info {
+    flex-grow: 1;
+    font-family: "MyFontRegular";
+}
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "MyFontRegular";
+}
+.meta {
+    font-size: 14px;
+    color: #444;
+    margin-top: 4px;
+    font-family: "MyFontRegular";
+}
+.action button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-family: "MyFontRegular";
+}
+.disabledBtn {
+    background-color: rgb(215, 29, 29) !important;
+    color: white !important;
+    cursor: not-allowed;
+    border: none;
+    border-radius: 1rem;
+    font-family: "MyFontRegular";
+    pointer-events: none;
+    opacity: 1;
+}
