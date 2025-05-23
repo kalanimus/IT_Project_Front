@@ -2,8 +2,8 @@ import React from "react";
 import classes from './header.module.css';
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import userIcon from "/Users/anna/Desktop/front_kalm/my-app/src/assets/icons/userIcon.svg"
-import Bell from "/Users/anna/Desktop/front_kalm/my-app/src/assets/icons/Bell.svg"
+import userIcon from "../../assets/icons/userIcon.svg"
+import Bell from "../../assets/icons/Bell.svg"
 
 const Header = (props) => {
     // const [user, setUser] = useState([])

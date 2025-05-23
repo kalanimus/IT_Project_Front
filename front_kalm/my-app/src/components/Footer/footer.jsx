@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './footer.module.css';
 import { Link } from "react-router-dom";
-import baumanLogo from "/Users/anna/Desktop/front_kalm/my-app/src/assets/icons/baumanLogo.svg"
+import baumanLogo from "../../assets/icons/baumanLogo.svg"
 
 const Footer = (props) =>{
     return (
