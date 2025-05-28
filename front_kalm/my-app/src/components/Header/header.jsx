@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import userIcon from "../../assets/icons/userIcon.svg";
 import Bell from "../../assets/icons/Bell.svg";
 import { useUser } from "../../context/UserContext";
+import coinIcon from "../../assets/icons/coin.png";
 
 const Header = (props) => {
   // const [user, setUser] = useState([])
@@ -18,6 +19,14 @@ const Header = (props) => {
       <header className={classes.header}>
         <div className={classes.left_header}>
           <h1 className={classes.crypto_text}>KALM</h1>
+          {user.user.username !== "" && user.user?.balance !== undefined && (
+            <div className={classes.balanceBox}>
+              <img src={coinIcon} alt="Баланс" className={classes.coinIcon} />
+              <span className={classes.balanceText}>
+                {user.user.balance?.toLocaleString() ?? 0}
+              </span>
+            </div>
+          )}
         </div>
         <div className={classes.right_header}>
           {user.user.username !== "" && (
@@ -25,7 +34,7 @@ const Header = (props) => {
               <Link to="/MainAuthPage" className={classes.links}>
                 Главная
               </Link>
-              <Link to="/Teachers" className={classes.links}>
+              <Link to="/search" className={classes.links}>
                 Преподаватели
               </Link>
               <Link to="/Survey" className={classes.links}>

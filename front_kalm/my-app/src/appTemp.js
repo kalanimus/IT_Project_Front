@@ -23,6 +23,7 @@ import "./assets/Fonts/fonts.css";
 import { UserProvider } from "./context/UserContext.jsx";
 
 function App() {
+  
   return (
     <BrowserRouter>
       <UserProvider>
@@ -40,7 +41,7 @@ function App() {
 
             {/* поиск преподавателей */}
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/teacher/:teacherId" element={<TeacherPage />} />
+            <Route path="/teacher-reviews" element={<TeacherPage />} />
 
             {/* кабинет */}
             <Route path="/cabinet" element={<CabinetStudentPage />} />

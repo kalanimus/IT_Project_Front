@@ -24,24 +24,37 @@ class Api implements IApi {
     }
 
     protected handleResponse<T>(response: Response): Promise<T> {
-        if (response.ok) {
-            // Если тело пустое, не вызываем response.json()
-            const contentLength = response.headers.get('content-length');
-            if (contentLength === '0' || response.status === 204) {
-                // @ts-ignore
-                return Promise.resolve({});
-            }
+    if (response.ok) {
+        const contentType = response.headers.get('content-type');
+        const contentLength = response.headers.get('content-length');
+        if (contentLength === '0' || response.status === 204) {
+            // @ts-ignore
+            return Promise.resolve({});
+        }
+        if (contentType && contentType.includes('application/json')) {
             return response.json();
         } else {
+            // @ts-ignore
+            return response.text();
+        }
+    } else {
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
             return response.json()
                 .then(data => Promise.reject(data.error ?? response.statusText))
                 .catch(() => Promise.reject(response.statusText));
+        } else {
+            return response.text()
+                .then(text => Promise.reject(text || response.statusText))
+                .catch(() => Promise.reject(response.statusText));
+        }
     }
-    }
+}
 
     get<T>(uri: string) {
     // Формируем headers для каждого запроса как обычный объект
     const headers = { ...(this.options.headers as Record<string, string>) };
+    // console.log('Headers:', headers);
     return fetch(this.baseUrl + uri, {
         ...this.options,
         headers,
@@ -206,4 +219,35 @@ export async function updateUserPartial({
 
   const response = await MyApi.post(`/Users/${id}`, body, 'PUT');
   return response;
+}
+
+export async function fetchTeachers({ page = 1, pageSize = 10, search = '', minRating, maxRating }) {
+  const params = new URLSearchParams();
+  params.append('page', String(page));
+  params.append('pageSize', String(pageSize));
+  if (search) params.append('search', search);
+  if (minRating !== undefined) params.append('minRating', String(minRating));
+  if (maxRating !== undefined) params.append('maxRating', String(maxRating));
+
+  return await MyApi.get(`/Teachers?${params.toString()}`);
+}
+
+export async function fetchTeacherReviews({ fullname, page = 1, pageSize = 10 }) {
+  const params = new URLSearchParams();
+  params.append('fullname', fullname);
+  params.append('page', String(page));
+  params.append('pageSize', String(pageSize));
+  return await MyApi.get(`/teachers/reviews?${params.toString()}`);
+}
+
+export async function sendTeacherReview(review) {
+  return await MyApi.post('/Teachers/reviews', review);
+}
+
+export async function likeReview(reviewId) {
+  await MyApi.post(`/Teachers/reviews/${reviewId}/like`, {});
+}
+
+export async function dislikeReview(reviewId) {
+  await MyApi.post(`/Teachers/reviews/${reviewId}/dislike`, {});
 }
