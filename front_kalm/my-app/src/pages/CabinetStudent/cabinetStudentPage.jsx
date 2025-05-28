@@ -1,62 +1,103 @@
-
-import React, { useState } from 'react';
-import Header from '../../components/Header/header.jsx';
-import Footer from '../../components/Footer/footer.jsx';
-import classes from './cabinetStudentPage.module.css';
-import { useUser } from '../../context/UserContext.jsx';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header/header.jsx";
+import Footer from "../../components/Footer/footer.jsx";
+import classes from "./cabinetStudentPage.module.css";
+import { useUser } from "../../context/UserContext.jsx";
+import { updateUserPartial } from "../../api.ts";
 
 const CabinetStudentPage = () => {
-    const user = useUser();
+  const { user, logout } = useUser();
+  const navigate = useNavigate();
 
-
-  // моки
-  const userInfo = {
-    name: 'Каланчакаев Никита Михайлович',
-    group: 'Группа СПНЗ-435',
-    avatar: '/avatars/avatar-user.png',
-    balance: 100500,
-    trustRating: 5.0,
-    login: 'abc23s01',
-    email: 'abc23s01@bmstu.ru',
-  };
-
-  // стейты
-  const [email, setEmail] = useState(userInfo.email);
+  // Email
+  const [email, setEmail] = useState(user.email || "");
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [tempEmail, setTempEmail] = useState(email);
 
+  // Пароль
   const [isEditingPwd, setIsEditingPwd] = useState(false);
-  const [tempPwd, setTempPwd] = useState('');
+  const [tempPwd, setTempPwd] = useState("");
+  const [repeatPwd, setRepeatPwd] = useState("");
   const [pwdSaved, setPwdSaved] = useState(false);
+  const [pwdError, setPwdError] = useState("");
+  const [pwdLoading, setPwdLoading] = useState(false);
 
   // handlers
   const handleLogout = () => {
-    user.logout(); // вызываем функцию logout из контекста
-    // здесь будет очистка токена и редирект
+    logout();
+    navigate("/"); // редирект на главную
   };
+
+  // Email
+  useEffect(() => {
+    setEmail(user.email || "");
+    setTempEmail(user.email || "");
+  }, [user.email]);
 
   const startEditEmail = () => {
     setTempEmail(email);
     setIsEditingEmail(true);
   };
-  const saveEmail = () => {
-    setEmail(tempEmail);
-    setIsEditingEmail(false);
-    console.log('new email:', tempEmail);
-  };
-  const cancelEmail = () => setIsEditingEmail(false);
 
+  const saveEmail = async () => {
+  try {
+    await updateUserPartial({
+      id: user.id,
+      email: tempEmail,
+      roleId: user.roleId,
+      roleName: user.roleName,
+    });
+    setIsEditingEmail(false); // скрываем поля редактирования
+    setEmail(tempEmail);      // обновляем email на новый
+    // tempEmail не сбрасываем!
+  } catch (error){
+    console.log("Ошибка при обновлении email", error);
+    // обработка ошибки
+  }
+  };
+  const cancelEmail = () => {
+    setIsEditingEmail(false);
+    setTempEmail(email); // возвращаем tempEmail к текущему email только при отмене
+  };
+
+  // Пароль
   const startEditPwd = () => {
-    setTempPwd('');
+    setTempPwd("");
+    setRepeatPwd("");
     setPwdSaved(false);
+    setPwdError("");
     setIsEditingPwd(true);
   };
-  const savePwd = () => {
-    setIsEditingPwd(false);
+  const savePwd = async () => {
+  setPwdLoading(true);
+  setPwdError("");
+  try {
+    await updateUserPartial({
+      id: user.id,
+      password: tempPwd,
+      roleId: user.roleId,
+      roleName: user.roleName,
+    });
+    setIsEditingPwd(false); // скрываем поля редактирования
     setPwdSaved(true);
-    console.log('new password:', tempPwd);
+    setTempPwd("");
+    setRepeatPwd("");
+  } catch {
+    setPwdError("Ошибка при обновлении пароля");
+  }
+  setPwdLoading(false);
   };
-  const cancelPwd = () => setIsEditingPwd(false);
+  const cancelPwd = () => {
+    setIsEditingPwd(false);
+    setTempPwd("");
+    setRepeatPwd("");
+    setPwdError("");
+  };
+
+  // Валидация совпадения паролей
+  const isPwdValid = tempPwd && repeatPwd && tempPwd === repeatPwd;
+  const isTeacher = user.roleName === "Преподаватель";
 
   return (
     <div className={classes.page}>
@@ -69,15 +110,17 @@ const CabinetStudentPage = () => {
           {/* ——— ЛЕВАЯ КОЛОНКА ——— */}
           <div className={classes.left}>
             <img
-              src={userInfo.avatar}
-              alt={userInfo.name}
+              src="/avatars/StudentAvatarMock.png"
+              alt={user.fullName}
               className={classes.avatar}
             />
             <button className={classes.statBtn}>
-              Баланс: {userInfo.balance.toLocaleString()} 🪙
+              Баланс: {user.balance?.toLocaleString() ?? 0} 🪙
             </button>
             <button className={classes.statBtn}>
-              Рейтинг доверия: {userInfo.trustRating.toFixed(1)}
+              {isTeacher
+                ? `Рейтинг: ${user.rating?.toFixed(1) ?? "0.0"}`
+                : `Рейтинг доверия: ${user.rating?.toFixed(1) ?? "0.0"}`}
             </button>
             <button className={classes.logoutBtn} onClick={handleLogout}>
               Выйти из профиля
@@ -87,8 +130,8 @@ const CabinetStudentPage = () => {
           {/* ——— ПРАВАЯ КОЛОНКА ——— */}
           <div className={classes.right}>
             <div className={classes.groupCard}>
-              <div className={classes.groupCard_name}>{userInfo.name}</div>
-              <div className={classes.groupCard_group}>{userInfo.group}</div>
+              <div className={classes.groupCard_name}>{user.fullName}</div>
+              <div className={classes.groupCard_group}>{user.roleName}</div>
             </div>
 
             <div className={classes.formSection}>
@@ -98,86 +141,119 @@ const CabinetStudentPage = () => {
                 <input
                   type="text"
                   className={classes.input}
-                  value={userInfo.login}
+                  value={user.username}
                   readOnly
                 />
               </div>
-                {/* ПАРОЛЬ */}
-                <div className={classes.fieldGroup}>
+              {/* ПАРОЛЬ */}
+              <div className={classes.fieldGroup}>
                 <label className={classes.label}>Пароль</label>
-                <input
-                    type={isEditingPwd ? 'text' : 'password'}
-                    className={classes.input}
-                    value={isEditingPwd ? tempPwd : '••••••••••••••'}
-                    onChange={e => setTempPwd(e.target.value)}
-                    disabled={!isEditingPwd}
-                />
-                <div className={classes.buttonRow}>
-                    {isEditingPwd ? (
-                    <>
-                        <button
+                {isEditingPwd ? (
+                  <>
+                    <input
+                      type="password"
+                      className={classes.input}
+                      placeholder="Новый пароль"
+                      value={tempPwd}
+                      onChange={(e) => setTempPwd(e.target.value)}
+                    />
+                    <input
+                      type="password"
+                      className={classes.input}
+                      placeholder="Повторите пароль"
+                      value={repeatPwd}
+                      onChange={(e) => setRepeatPwd(e.target.value)}
+                      style={{ marginTop: 8 }}
+                    />
+                    {tempPwd && repeatPwd && tempPwd !== repeatPwd && (
+                      <div style={{ color: "red", fontSize: 13, marginTop: 4 }}>
+                        Пароли не совпадают
+                      </div>
+                    )}
+                    {pwdError && (
+                      <div style={{ color: "red", fontSize: 13, marginTop: 4 }}>
+                        {pwdError}
+                      </div>
+                    )}
+                    <div className={classes.buttonRow}>
+                      <button
                         className={classes.saveBtn}
                         onClick={savePwd}
-                        disabled={!tempPwd}
-                        >
-                        Сохранить
-                        </button>
-                        <button
+                        disabled={!isPwdValid || pwdLoading}
+                      >
+                        {pwdLoading ? "Сохранение..." : "Сохранить"}
+                      </button>
+                      <button
                         className={classes.cancelBtn}
                         onClick={cancelPwd}
-                        >
+                        disabled={pwdLoading}
+                      >
                         Отмена
-                        </button>
-                    </>
-                    ) : (
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  >
+                    <input
+                      type="password"
+                      className={classes.input}
+                      value={"••••••••••••••"}
+                      readOnly
+                      disabled
+                    />
                     <button
-                        className={classes.changeBtn}
-                        onClick={startEditPwd}
+                      className={classes.changeBtn}
+                      onClick={startEditPwd}
                     >
-                        Изменить пароль
+                      Изменить пароль
                     </button>
-                    )}
-                </div>
-                </div>
+                  </div>
+                )}
+                {pwdSaved && !isEditingPwd && (
+                  <div style={{ color: "green", fontSize: 13, marginTop: 4 }}>
+                    Пароль успешно изменён!
+                  </div>
+                )}
+              </div>
 
-                {/* ЭЛЕКТРОННАЯ ПОЧТА */}
-                <div className={classes.fieldGroup}>
+              {/* ЭЛЕКТРОННАЯ ПОЧТА */}
+              <div className={classes.fieldGroup}>
                 <label className={classes.label}>Электронная почта</label>
                 <input
-                    type="email"
-                    className={classes.input}
-                    value={isEditingEmail ? tempEmail : email}
-                    onChange={e => setTempEmail(e.target.value)}
-                    disabled={!isEditingEmail}
+                  type="email"
+                  className={classes.input}
+                  value={isEditingEmail ? tempEmail : email}
+                  onChange={(e) => setTempEmail(e.target.value)}
+                  disabled={!isEditingEmail}
                 />
                 <div className={classes.buttonRow}>
-                    {isEditingEmail ? (
+                  {isEditingEmail ? (
                     <>
-                        <button
+                      <button
                         className={classes.saveBtn}
                         onClick={saveEmail}
                         disabled={!tempEmail}
-                        >
+                      >
                         Сохранить
-                        </button>
-                        <button
+                      </button>
+                      <button
                         className={classes.cancelBtn}
                         onClick={cancelEmail}
-                        >
+                      >
                         Отмена
-                        </button>
+                      </button>
                     </>
-                    ) : (
+                  ) : (
                     <button
-                        className={classes.changeBtn}
-                        onClick={startEditEmail}
+                      className={classes.changeBtn}
+                      onClick={startEditEmail}
                     >
-                        Изменить почту
+                      Изменить почту
                     </button>
-                    )}
+                  )}
                 </div>
-
-
               </div>
             </div>
           </div>

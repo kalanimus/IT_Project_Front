@@ -20,8 +20,9 @@ const LoginModal = ({ onNeedVerification, onSuccess }) => {
       if (response.requireVerification) {
         onNeedVerification({ login: loginValue, password });
       } else if (response.token) {
-        const userData = await getMe();
-        user.setUser(userData);
+        // const userData = await getMe();
+        // user.setUser(userData);
+        user.login(response.token);
         onSuccess();
       } else {
         setError("Неверный логин или пароль");

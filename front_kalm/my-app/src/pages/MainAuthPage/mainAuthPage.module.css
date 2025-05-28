@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: "MyFontRegular";
+  font-family: "MyFontRegular", Arial, sans-serif;
+  background: #BAC095;
 }
 
 .main {
@@ -11,6 +12,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 30px 20px;
+  box-sizing: border-box;
 }
 
 .content {
@@ -20,31 +22,37 @@
   align-items: flex-start;
 }
 
-/* ------------- ЛЕВАЯ КОЛОНКА ------------- */
 .left {
-  flex: 1;
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
 
-/* Новости */
 .news {
-  background-color: #EDF0D5;
+  background-color: #FBFFE3;
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px 30px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .news h2 {
-  margin: 0 0 12px;
-  font-size: 20px;
+  margin: 0 0 24px;
+  font-size: 22px;
   font-weight: 600;
+  text-align: center;
 }
 
 .newsEmpty {
-  padding: 40px;
+  padding: 40px 0;
   text-align: center;
-  color: #555;
+  color: #222;
+  font-size: 22px;
+  font-weight: 400;
 }
 
 .newsList {
@@ -78,20 +86,19 @@
 
 .newsText {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
 }
 
-/* FAQ */
 .faq {
-  background-color: #EDF0D5;
+  background-color: #FBFFE3;
   border-radius: 20px;
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 .faq h2 {
-  margin: 0 0 12px;
-  font-size: 20px;
+  margin: 0 0 16px;
+  font-size: 18px;
   font-weight: 600;
 }
 
@@ -103,7 +110,7 @@
 
 .faqItem {
   border-top: 1px solid rgba(0,0,0,0.1);
-  padding: 8px 0;
+  padding: 10px 0;
 }
 
 .faqItem:first-child {
@@ -114,12 +121,14 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
+  align-items: center;
 }
 
 .faqIcon {
   font-weight: bold;
+  font-size: 18px;
 }
 
 .faqAnswer {
@@ -128,42 +137,51 @@
   color: #555;
 }
 
-/* ------------- ПРАВАЯ КОЛОНКА ------------- */
+/* Правая колонка */
 .right {
   width: 350px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Активный студент */
-.activeStudent {
-  background-color: #EDF0D5;
+.activeStudent,
+.topTeachers,
+.lastReviews {
+  background-color: #FBFFE3;
   border-radius: 20px;
-  padding: 20px;
+  padding: 20px 18px;
 }
 
-.activeStudent h3 {
-  margin: 0 0 12px;
-  font-size: 18px;
+.activeStudent h3,
+.topTeachers h3,
+.lastReviews h3 {
+  margin: 0 0 14px;
+  font-size: 17px;
   font-weight: 600;
+  text-align: left;
 }
 
-.studentCard {
+.studentCard,
+.teacherCard,
+.reviewCard {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .avatarSmall {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   object-fit: cover;
+  background: #fff;
+  border: 2px solid #d7d7b8;
 }
 
 .name {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: #222;
 }
@@ -171,19 +189,7 @@
 .faculty {
   font-size: 12px;
   color: #555;
-}
-
-/* Топ преподавателей */
-.topTeachers {
-  background-color: #EDF0D5;
-  border-radius: 20px;
-  padding: 20px;
-}
-
-.topTeachers h3 {
-  margin: 0 0 12px;
-  font-size: 18px;
-  font-weight: 600;
+  margin-top: 2px;
 }
 
 .teacherList {
@@ -193,37 +199,81 @@
 }
 
 .teacherList li + li {
-  margin-top: 12px;
-}
-
-.teacherCard {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Последние отзывы */
-.lastReviews {
-  background-color: #EDF0D5;
-  border-radius: 20px;
-  padding: 20px;
-}
-
-.lastReviews h3 {
-  margin: 0 0 20px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.reviewCard {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  margin-top: 14px;
 }
 
 .reviewText {
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+/* --- Адаптив --- */
+@media (max-width: 1024px) {
+  .main {
+    max-width: 100%;
+    padding: 20px 8px;
+  }
+  .content {
+    gap: 12px;
+  }
+  .right {
+    width: 260px;
+    min-width: 180px;
+    gap: 12px;
+  }
+  .news, .faq, .activeStudent, .topTeachers, .lastReviews {
+    padding: 18px 10px;
+  }
+  .avatarSmall {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 800px) {
+  .content {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .right {
+    width: 100%;
+    min-width: 0;
+    flex-direction: row;
+    gap: 18px;
+  }
+  .activeStudent, .topTeachers, .lastReviews {
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 10px 2vw;
+  }
+  .content {
+    margin-top: 1.5rem;
+    gap: 10px;
+  }
+  .left, .right {
+    gap: 10px;
+  }
+  .news, .faq, .activeStudent, .topTeachers, .lastReviews {
+    padding: 10px 4px;
+    border-radius: 12px;
+  }
+  .news h2, .faq h2, .activeStudent h3, .topTeachers h3, .lastReviews h3 {
+    font-size: 15px;
+  }
+  .avatarSmall {
+    width: 32px;
+    height: 32px;
+  }
+  .name {
+    font-size: 13px;
+  }
+  .faculty, .reviewText {
+    font-size: 11px;
+  }
 }

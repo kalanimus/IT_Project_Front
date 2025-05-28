@@ -10,6 +10,7 @@ const Header = (props) => {
   // const [user, setUser] = useState([])
   const cookie = Cookies.get("auth");
   const user = useUser();
+  // console.log("user in header", user);
 
 
   return (
@@ -21,7 +22,7 @@ const Header = (props) => {
         <div className={classes.right_header}>
           {user.user.username !== "" && (
             <>
-              <Link to="/Main" className={classes.links}>
+              <Link to="/MainAuthPage" className={classes.links}>
                 Главная
               </Link>
               <Link to="/Teachers" className={classes.links}>
@@ -36,7 +37,7 @@ const Header = (props) => {
         <Link to="/Cabinet">
           <button
             className={classes.profileIcon}
-            disabled={user.user.username === ""}
+            disabled={!user.user.username}
           >
             <img src={userIcon} alt="Профиль" className={classes.iconImage} />
           </button>

@@ -1,30 +1,72 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getMe, MyApi } from "../api.ts";
 
-// Определяем структуру пользователя
-const defaultUser = {
+const initialUser = {
+  id: null,
   fullName: "",
   username: "",
   balance: 0,
   rating: 0,
-  activityrating: 0,
+  activityRate: 0,
   email: "",
-  token: "",
-  role: "",
+  roleId: null,
+  roleName: "",
 };
 
 const UserContext = createContext({
-  user: defaultUser,
+  user: initialUser,
   setUser: () => {},
+  login: () => {},
   logout: () => {},
+  isLoading: false,
 });
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(defaultUser);
+  const [user, setUser] = useState(initialUser);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const logout = () => setUser(defaultUser);
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      MyApi.setAuthToken(token);
+      getMe()
+        .then((userData) => {
+          setUser(userData);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          setUser(initialUser);
+          setIsLoading(false);
+          localStorage.removeItem("authToken");
+        });
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const login = (token) => {
+    localStorage.setItem("authToken", token);
+    MyApi.setAuthToken(token);
+    setIsLoading(true);
+    getMe()
+      .then((userData) => {
+        setUser(userData);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setUser(initialUser);
+        setIsLoading(false);
+        localStorage.removeItem("authToken");
+      });
+  };
+
+  const logout = () => {
+    setUser(initialUser);
+    localStorage.removeItem("authToken");
+  };
 
   return (
-    <UserContext.Provider value={{ user, setUser, logout }}>
+    <UserContext.Provider value={{ user, setUser, login, logout, isLoading }}>
       {children}
     </UserContext.Provider>
   );
