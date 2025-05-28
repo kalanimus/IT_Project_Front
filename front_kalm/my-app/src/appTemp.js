@@ -21,6 +21,7 @@ import { SurveysProvider } from "./pages/SurveyTest/SurveysContext.jsx";
 
 import "./assets/Fonts/fonts.css";
 import { UserProvider } from "./context/UserContext.jsx";
+import PassSurveyPage from "./pages/PassSurveyPage/passSurveyPage.jsx";
 
 function App() {
   
@@ -47,7 +48,8 @@ function App() {
             <Route path="/cabinet" element={<CabinetStudentPage />} />
 
             {/* опросы */}
-            <Route path="/surveys" element={<SurveyPage />} />
+            <Route path="/survey" element={<SurveyPage />} />
+            <Route path="/PassSurveyPage" element={<PassSurveyPage />} />
             <Route path="/survey/:surveyId" element={<SurveyDetailPage />} />
 
             {/* страницы для преподавателя */}

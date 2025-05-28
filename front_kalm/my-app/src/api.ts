@@ -251,3 +251,16 @@ export async function likeReview(reviewId) {
 export async function dislikeReview(reviewId) {
   await MyApi.post(`/Teachers/reviews/${reviewId}/dislike`, {});
 }
+
+export async function getSurveys() {
+  return await MyApi.get("/Surveys"); 
+}
+
+export async function getSurveyAnalytics({ id, group, subject }) {
+  const params = new URLSearchParams({ id, group, subject });
+  return await MyApi.get(`/Surveys/analytics?${params.toString()}`);
+}
+
+export async function completeSurvey(surveyId, payload) {
+  return await MyApi.post(`/Surveys/${surveyId}/complete`, payload);
+}

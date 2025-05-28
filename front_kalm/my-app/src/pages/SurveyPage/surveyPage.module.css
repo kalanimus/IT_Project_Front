@@ -1,110 +1,281 @@
-.page{
-    display: grid;
+.page {
+  min-height: 100vh;
+  background: #c3c7a0;
+  display: flex;
+  flex-direction: column;
+  font-family: "MyFontRegular";
 }
 
-.all_block{
-    justify-content: center;
-    margin-top: 40px;
-
+.main {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 10px 24px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.text1{
-    font-family: "MyFontRegular";
-    font-size: 36px;
-    color: rgba(36, 39, 13, 1);
-    margin-left: 38rem;
-    
+.teacherContainer {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
 }
 
-.middle_form {
-    background-color: rgba(251, 255, 227, 1);
-    height: 600px;
-    overflow-y: auto;
-    width: 75rem;
-    padding: 30px 2rem;
-    border-radius: 30px;
-    margin-top: 11px;
-    margin-left: 7rem;
-    scrollbar-width: none; /* для Firefox */
+.surveysBlock, .analyticBlock {
+  background: #f3f5e3;
+  border-radius: 18px;
+  padding: 24px 20px;
+  flex: 1;
+  min-width: 320px;
 }
 
-.middle_form::-webkit-scrollbar {
-    display: none; /* для Chrome/Safari/Edge */
+.analyticBlock {
+  max-width: 480px;
 }
 
-
+.title, .analyticTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #222;
+}
 
 .filters {
-    display: flex;
-    gap: 1rem;
-    margin-left: 7rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-family: "MyFontRegular";
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
-.filters select {
-    font-family: "MyFontRegular";
-    font-size: 16px;
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    background-color: #FBFFE3;
-    font-family: "MyFontRegular";
+.filterBtn {
+  background: #e0e2c2;
+  border: none;
+  border-radius: 14px;
+  padding: 6px 18px;
+  font-size: 15px;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.filterBtn:hover {
+  background: #bfc39c;
 }
 
-
-.card {
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #ccc;
-    margin: 0 2rem;
-    font-family: "MyFontRegular";
+.surveyList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
 }
 
-.statusDot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 1rem;
-    font-family: "MyFontRegular";
+.surveyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fffbe7;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  gap: 12px;
 }
-.active { background-color: green; }
-.view { background-color: #c1b300; }
-.disabled { background-color: darkred; }
 
-.info {
-    flex-grow: 1;
-    font-family: "MyFontRegular";
+.surveyTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #222;
 }
-.title {
-    font-weight: bold;
-    font-size: 18px;
-    font-family: "MyFontRegular";
+
+.surveyDesc {
+  font-size: 14px;
+  color: #666;
+  margin-top: 2px;
 }
-.meta {
-    font-size: 14px;
-    color: #444;
-    margin-top: 4px;
-    font-family: "MyFontRegular";
+
+.analyticBtn, .passBtn, .viewBtn, .createBtn {
+  background: #bfc39c;
+  color: #222;
+  border: none;
+  border-radius: 14px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
 }
-.action button {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
-    cursor: pointer;
-    font-family: "MyFontRegular";
+.analyticBtn:hover, .passBtn:hover, .viewBtn:hover, .createBtn:hover {
+  background: #b08e29;
+  color: #fff;
 }
+
+.createBtn {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.surveyEmpty {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  margin: 24px 0;
+}
+
+.analyticContent {
+  margin-top: 12px;
+}
+
+.analyticParams {
+  margin-bottom: 18px;
+}
+
+.analyticSubtitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.analyticList {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 15px;
+  color: #333;
+}
+
+.analyticValue {
+  color: #b08e29;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.analyticCommentBlock {
+  margin-top: 12px;
+}
+
+.analyticCommentTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.analyticCommentText {
+  background: #f8f8e8;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.studentContainer {
+  background: #f3f5e3;
+  border-radius: 18px;
+  padding: 24px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.surveyStatus {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .disabledBtn {
-    background-color: rgb(215, 29, 29) !important;
-    color: white !important;
-    cursor: not-allowed;
-    border: none;
-    border-radius: 1rem;
-    font-family: "MyFontRegular";
-    pointer-events: none;
-    opacity: 1;
+  background: #e0e2c2;
+  color: #aaa;
+  border-radius: 14px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: not-allowed;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin-top: 80px;
+}
+
+.analyticPlaceholder {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 18px;
+  text-align: center;
+}
+
+.analyticValue {
+  color: #b08e29;
+  font-weight: 600;
+  margin-left: 8px;
+  font-size: 1.1em;
+}
+.analyticMax {
+  color: #888;
+  font-size: 0.95em;
+  margin-left: 2px;
+}
+
+/* Адаптивность */
+@media (max-width: 1000px) {
+  .teacherContainer {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .analyticBlock {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .main {
+    padding: 10px 2vw;
+    gap: 14px;
+  }
+  .surveysBlock, .analyticBlock, .studentContainer {
+    padding: 10px 6px;
+    border-radius: 10px;
+  }
+  .title, .analyticTitle {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+  .surveyTitle {
+    font-size: 13px;
+  }
+  .surveyDesc {
+    font-size: 11px;
+  }
+  .analyticSubtitle, .analyticCommentTitle {
+    font-size: 11px;
+  }
+  .analyticList {
+    font-size: 11px;
+  }
+  .analyticCommentText {
+    font-size: 11px;
+    padding: 6px;
+  }
+  .filterBtn, .analyticBtn, .passBtn, .viewBtn, .createBtn, .disabledBtn {
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding: 4px 1vw;
+  }
+  .surveysBlock, .analyticBlock, .studentContainer {
+    padding: 4px 2px;
+    border-radius: 6px;
+  }
+  .surveyItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 8px 6px;
+  }
 }
