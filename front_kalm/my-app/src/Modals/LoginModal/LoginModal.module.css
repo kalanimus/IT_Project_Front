@@ -1,0 +1,104 @@
+.form {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: none;
+  border-radius: 18px;
+  padding: 0;
+}
+
+.head_word {
+  font-family: "MyFontBold";
+  font-size: 48px;
+  color: #24270d;
+  text-align: center;
+  margin-bottom: 32px;
+  margin-top: 16px;
+}
+
+.label {
+  font-family: "MyFontBold";
+  font-size: 20px;
+  color: #24270d;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.input {
+  /* width: 100%; */
+  font-size: 26px;
+  font-family: "MyFontRegular";
+  color: #24270d;
+  background: #fff !important;
+  border: 1px solid #BAC095 !important;
+  border-radius: 40px !important;
+  padding: 12px 24px !important;
+  margin-bottom: 8px;
+  outline: none;
+  transition: border 0.2s;
+}
+.input:focus {
+  border: 1.5px solid #24270d;
+}
+
+.forgot {
+  margin: 10px 0 24px 0;
+}
+.forgot_link {
+  font-family: "MyFontRegular";
+  font-size: 16px;
+  color: #24270d;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.button {
+  width: 100%;
+  background: #24270d;
+  color: #fcffe2;
+  font-family: "MyFontBold";
+  font-size: 32px;
+  border: none;
+  border-radius: 40px;
+  padding: 16px 0;
+  margin-top: 32px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.button:active {
+  opacity: 0.8;
+}
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #b80000;
+  font-size: 16px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .form {
+    max-width: 98vw;
+  }
+  .head_word {
+    font-size: 32px;
+  }
+  .input {
+    font-size: 18px;
+    padding: 10px 16px;
+  }
+  .button {
+    font-size: 22px;
+    padding: 12px 0;
+  }
+}

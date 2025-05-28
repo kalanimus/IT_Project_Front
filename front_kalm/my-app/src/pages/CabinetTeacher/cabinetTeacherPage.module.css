@@ -1,0 +1,161 @@
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "MyFontRegular";
+}
+
+.main {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+/* общий контейнер: две колонки, сверху выровнено по заголовку */
+.content {
+  display: flex;
+  align-items: flex-start; /* выравниваем по верху */
+  gap: 60px;
+}
+
+/* Левая колонка */
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 260px; /* фиксированная ширина */
+  font-family: "MyFontRegular";
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* кнопка выхода похожа, но курсор pointer */
+.logoutBtn {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  background-color: #505536;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  font-family: "MyFontRegular";
+}
+
+/* Правая колонка */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  /* чтобы форма никогда не выходила за макет */
+  max-width: 650px;
+}
+
+/* имя и группа */
+.groupCard {
+  background-color: #EDF0D5;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 650px;
+}
+
+.groupCard_name {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.groupCard_group {
+  font-size: 21px;
+  color: #555;
+}
+
+/* секция полей */
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 650px;
+}
+
+/* каждый блок: надпись + поле(и кнопки) */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* лейбл над полем */
+.label {
+  font-size: 20px;
+  color: #333;
+}
+
+/* сам инпут */
+.input {
+  width: 100%;
+  box-sizing: border-box;      /* очень важно! */
+  padding: 12px 16px;
+  border: none;
+  border-radius: 30px;
+  background-color: #F7F9E6;
+  font-size: 14px;
+  color: #333;
+   font-family: "MyFontRegular";
+}
+
+/* контейнер под кнопки управления полем */
+.buttonRow {
+  display: flex;
+  gap: 12px;
+   font-family: "MyFontRegular";
+}
+/* кнопки Изменить / Сохранить / Отмена */
+.changeBtn,
+.saveBtn,
+.cancelBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: "MyFontRegular";
+}
+
+/* стили кнопок */
+.changeBtn {
+  background-color: #505536;
+  color: #fff;
+  align-self: flex-start;
+}
+
+.saveBtn {
+  background-color: #16ce3b;
+  color: #fff;
+}
+
+.cancelBtn {
+  background-color: #d5311e;
+  color: #fff;
+}

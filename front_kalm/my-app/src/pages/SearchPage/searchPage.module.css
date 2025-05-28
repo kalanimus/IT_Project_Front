@@ -1,0 +1,134 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "MyFontRegular";
+}
+
+.main {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.searchWrapper {
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.controlBtn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  background-color: #EDF0D5;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* фильтр по оценкам */
+.ratingFilter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ratingFilter label {
+  font-size: 14px;
+  color: #555;
+}
+
+.ratingFilter input {
+  width: 60px;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* общий список */
+.list {
+  background-color: #F7F9E6;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 4px;
+}
+
+.faculty {
+  font-size: 14px;
+  color: #555;
+}
+
+.rating {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #B08E29;
+}
+
+.nameLink {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+/* при наведении можно, например, подчёркивать */
+.nameLink:hover {
+  text-decoration: underline;
+}

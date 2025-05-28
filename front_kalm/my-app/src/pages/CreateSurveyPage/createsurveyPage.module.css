@@ -21,17 +21,9 @@
     border-radius: 20px;
 }
 
-label {
+.label {
     font-size: 14px;
     color: #24270d;
-}
-
-input[type="text"] {
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    background-color: #f3f3df;
-    font-size: 14px;
 }
 
 .questionBlock {

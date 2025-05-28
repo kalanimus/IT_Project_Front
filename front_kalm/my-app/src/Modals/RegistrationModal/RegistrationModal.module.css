@@ -1,0 +1,139 @@
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #24270d;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.2s;
+}
+.closeButton:hover {
+  color: #535725;
+}
+
+/* Стили для формы */
+.form {
+  /* width: 100%; */
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border-radius: 18px;
+  padding: 0;
+}
+
+.head_word {
+  font-family: "MyFontBold";
+  font-size: 48px;
+  color: #24270d;
+  text-align: center;
+  margin-bottom: 32px;
+  margin-top: 16px;
+}
+
+.label {
+  font-family: "MyFontBold";
+  font-size: 20px;
+  color: #24270d;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.input {
+  width: 100%;
+  font-size: 26px;
+  font-family: "MyFontRegular";
+  color: #24270d;
+  background: #fff !important;
+  border: 1px solid #BAC095 !important;
+  border-radius: 40px !important;
+  padding: 12px 24px !important;
+  margin-bottom: 8px;
+  outline: none;
+  transition: border 0.2s;
+}
+.input:focus {
+  border: 1.5px solid #24270d;
+}
+
+.container_checkbox {
+  display: flex;
+  align-items: flex-start;
+  margin: 8px 0 0 0;
+  gap: 10px;
+}
+
+.checkbox {
+  min-width: 24px;
+  height: 24px;
+  accent-color: #bfc2a0;
+  margin-top: 2px;
+}
+
+.info_text {
+  font-family: "MyFontRegular";
+  font-size: 15px;
+  color: #24270d;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.rules_link {
+  color: #3c31db;
+  font-family: "MyFontRegular";
+  font-size: 15px;
+  text-decoration: underline;
+}
+
+.button_sent {
+  width: 100%;
+  background: #24270d;
+  color: #fcffe2;
+  font-family: "MyFontBold";
+  font-size: 32px;
+  border: none;
+  border-radius: 40px;
+  padding: 16px 0;
+  margin-top: 32px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.button_sent:active {
+  opacity: 0.8;
+}
+.button_sent:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .modalContent {
+    min-width: 0;
+    width: 98vw;
+    min-height: 0;
+    padding: 2vw 1vw 2vw 1vw;
+  }
+  .form {
+    max-width: 98vw;
+  }
+  .head_word {
+    font-size: 32px;
+  }
+  .input {
+    font-size: 18px;
+    padding: 10px 16px;
+  }
+  .button_sent {
+    font-size: 22px;
+    padding: 12px 0;
+  }
+}

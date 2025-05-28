@@ -1,48 +1,50 @@
 import React from "react";
-import classes from './header.module.css';
+import classes from "./header.module.css";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import userIcon from "../../assets/icons/userIcon.svg"
-import Bell from "../../assets/icons/Bell.svg"
+import userIcon from "../../assets/icons/userIcon.svg";
+import Bell from "../../assets/icons/Bell.svg";
+import { useUser } from "../../context/UserContext";
 
 const Header = (props) => {
-    // const [user, setUser] = useState([])
-    const cookie = Cookies.get("auth")
+  // const [user, setUser] = useState([])
+  const cookie = Cookies.get("auth");
+  const user = useUser();
 
-    return (
-        <><header className={classes.header}>
-            <div className={classes.left_header}>
-                <h1 className={classes.crypto_text}>KALM</h1>
-            </div>
-            <div className={classes.right_header}>
-                {!cookie && (<>
-                    {/* <img className={classes.image}src={logo} alt=""/> */}
-                    <Link to="/Cabinet">
-                        <button className={classes.profileIcon}>
-                            <img src={userIcon} alt="Профиль" className={classes.iconImage} />
-                        </button>
-                    </Link>
-                </>)}
-                {cookie && (<>
-                    <Link to="/Main" className={classes.links}>Главная</Link>
-                    <Link to="/Teachers" className={classes.links}>Преподаватели</Link>
-                    <Link to="/Survey" className={classes.links}>Опросы</Link>
-                    {/* <Link to="/Notions">
-                        <button className={classes.profileBell}>
-                            <img src={Bell} alt="Уведомления" className={classes.Bell}></img>
-                        </button>
-                    </Link> */}
-                    <Link to="/Cabinet">
-                        <button className={classes.profileIcon}>
-                            <img src={userIcon} alt="Профиль" className={classes.iconImage} />
-                        </button>
-                    </Link>
-                </>)}
-            </div>
-        </header> 
-        <div className={classes.palka}></div></>
-    );
-}
+
+  return (
+    <>
+      <header className={classes.header}>
+        <div className={classes.left_header}>
+          <h1 className={classes.crypto_text}>KALM</h1>
+        </div>
+        <div className={classes.right_header}>
+          {user.user.username !== "" && (
+            <>
+              <Link to="/Main" className={classes.links}>
+                Главная
+              </Link>
+              <Link to="/Teachers" className={classes.links}>
+                Преподаватели
+              </Link>
+              <Link to="/Survey" className={classes.links}>
+                Опросы
+              </Link>
+            </>
+          )}
+        </div>
+        <Link to="/Cabinet">
+          <button
+            className={classes.profileIcon}
+            disabled={user.user.username === ""}
+          >
+            <img src={userIcon} alt="Профиль" className={classes.iconImage} />
+          </button>
+        </Link>
+      </header>
+    </>
+  );
+};
 
 // function Header() {
 //     return (
@@ -54,7 +56,7 @@ const Header = (props) => {
 //                 <img src = "../assets/icons/userIcon.svg"></img>
 //                 </div>
 //             </div>
-//             <div className={styles.palka}></div> 
+//             <div className={styles.palka}></div>
 //         </div>
 //         // <head class="header">
 //         //     <img src=""></img>

@@ -1,108 +1,161 @@
-
-.main_page{
+.main_page {
     display: grid;
+    min-height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.all_block{
+.all_block {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(16px, 4vw, 64px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.image{
-    display: inline-block;
-    width: 630px;
-    height: 765px;
-    margin-left: 1rem;
+.image {
+    width: auto;
+    height: clamp(180px, 40vw, 72vh);
+    max-height: 72vh;
+    min-height: 120px;
+    object-fit: contain;
+    margin: 0 2vw 0 0;
 }
-.right_block{
+
+.right_block {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    min-width: 220px;
+    max-width: 90vw;
+    flex: 1 1 350px;
 }
 
-.kalm_text{
-    font-family: "MyFontBold";
-    margin-top: 0px;
-    margin-left: 40px;
-    font-size: 120px;
-    color:  rgba(251, 255, 227, 1);
-    height: 100px;
-    width: 730px;
-}
-.kalm_text2{
+.kalm_text {
     font-family: "MyFontBold";
     margin-top: 0;
-    margin-left: 40px;
-    font-size: 20px;
-    color:  rgba(251, 255, 227, 1);
-    height: 20px;
-    width: 730px;
+    /* margin-left: clamp(8px, 3vw, 40px); */
+    font-size: clamp(36px, 8vw, 100px);
+    color: rgba(251, 255, 227, 1);
+    height: auto;
+    width: 100%;
+    max-width: 730px;
+    line-height: 1.1;
+    word-break: break-word;
 }
-.kalm_text_information{
+
+.kalm_text2 {
+    font-family: "MyFontBold";
+    margin-top: 0;
+    /* margin-left: clamp(8px, 3vw, 40px); */
+    font-size: clamp(20px, 2vw, 40px);
+    color: rgba(251, 255, 227, 1);
+    height: auto;
+    width: 100%;
+    max-width: 730px;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.kalm_text_information p{
     display: grid;
     font-family: "MyFontRegular";
-    margin-left: 70px;
-    margin-top: 40px;
-    font-size: 18px;
-    color:  rgba(36, 39, 13, 1);
-    height: 30px;
-    width: 600px;
+    /* margin-left: clamp(8px, 1.5vw, 70px); */
+    /* margin-top: clamp(12px, 1.5vw, 40px); */
+    font-size: clamp(12px, 1.5vw, 25px);
+    color: rgba(36, 39, 13, 1);
+    height: auto;
+    width: 100%;
+    max-width: 750px;
     gap: 4px;
+    word-break: break-word;
 }
+
 .bold {
     font-weight: 900;
     color: rgba(36, 39, 13, 1);
 }
 
-.button1{
+.button1 {
     font-family: "MyFontBold";
     text-align: center;
-    font-size: 22px;
-    margin-top: 0;
-    margin-bottom: 6px;
-    margin-left: 25px;
-    width: 115px;
-    height: 52px;
+    font-size: clamp(14px, 1.5vw, 40px);
+    width: clamp(80px, 10vw, 200px);
+    height: clamp(36px, 3vw, 70px);
     background-color: rgba(251, 255, 227, 1);
-    border-radius: 30px ;
+    border-radius: 30px;
     color: rgba(36, 39, 13, 1);
     border-color: rgba(251, 255, 227, 1);
     border-style: solid;
-    &:hover{
-        opacity: 0.7;
-    }
-    &:active{
-        opacity: 1.2;
-    }
+    transition: opacity 0.2s;
 }
-.button2{
+.button1:hover {
+    opacity: 0.7;
+}
+.button1:active {
+    opacity: 1.2;
+}
+
+.button2 {
     font-family: "MyFontBold";
     text-align: center;
-    font-size: 22px;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    margin-left: 25px;
-    width: 220px;
-    height: 52px;
+    font-size: clamp(14px, 1.5vw, 40px);
+    width: clamp(120px, 15vw, 400px);
+    height: clamp(36px, 3vw, 70px);
     background-color: rgba(36, 39, 13, 1);
-    border-radius: 30px ;
+    border-radius: 30px;
     color: rgba(251, 255, 227, 1);
-    border-color: rgba(36, 39, 13, 1) ;
+    border-color: rgba(36, 39, 13, 1);
     border-style: solid;
-
-    &:hover{
-        opacity: 0.7;
-    }
-    &:active{
-        opacity: 1.2;
-        transition: background-color 0.5s;
-    }
+    transition: opacity 0.2s, background-color 0.5s;
 }
-.claster_buttons{
+.button2:hover {
+    opacity: 0.7;
+}
+.button2:active {
+    opacity: 1.2;
+}
+
+.claster_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: row;
-    margin-top: 220px;
-    margin-left: 45px;
+    flex-wrap: wrap;
+    margin-top: clamp(40px, 2vh, 50px);
+    /* margin-left: clamp(8px, 3vw, 45px); */
+    gap: clamp(8px, 2vw, 24px);
+}
+
+h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Адаптация для очень маленьких экранов */
+@media (max-width: 700px) {
+    .all_block {
+        flex-direction: column;
+        gap: 2vw;
+    }
+    .image {
+        margin: 0 0 2vw 0;
+        height: clamp(100px, 30vw, 220px);
+    }
+    .right_block {
+        align-items: center;
+        margin: 0;
+    }
+    .kalm_text, .kalm_text2, .kalm_text_information {
+        margin-left: 0;
+        max-width: 98vw;
+    }
+    .claster_buttons {
+        margin-left: 0;
+        justify-content: center;
+    }
 }
