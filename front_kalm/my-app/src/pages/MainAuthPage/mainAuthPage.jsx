@@ -127,7 +127,7 @@ export default function MainAuthPage() {
               {activeStudent ? (
                 <div className={classes.studentCard}>
                   <img
-                    src={activeStudent.avatar || "/avatars/StudentAvatarMock.png"}
+                    src={activeStudent.avatar || "/avatars/studentAvatarMock.png"}
                     alt={activeStudent.fullName}
                     className={classes.avatarSmall}
                   />
@@ -150,7 +150,7 @@ export default function MainAuthPage() {
                     <li key={idx}>
                       <div className={classes.teacherCard}>
                         <img
-                          src={t.avatar || "/avatars/StudentAvatarMock.png"}
+                          src={t.avatar || "/avatars/studentAvatarMock.png"}
                           alt={t.fullName}
                           className={classes.avatarSmall}
                         />
@@ -173,7 +173,7 @@ export default function MainAuthPage() {
               {lastReview ? (
                 <div className={classes.reviewCard}>
                   <img
-                    src={lastReview.avatar || "/avatars/StudentAvatarMock.png"}
+                    src={lastReview.avatar || "/avatars/studentAvatarMock.png"}
                     alt={lastReview.teacherFullName}
                     className={classes.avatarSmall}
                   />
