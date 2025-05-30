@@ -36,6 +36,7 @@
   font-size: 32px;
   font-weight: bold;
   color: #333;
+  object-fit: cover;
 }
 
 .info {
