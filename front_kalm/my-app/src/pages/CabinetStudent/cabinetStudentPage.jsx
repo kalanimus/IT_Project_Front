@@ -110,7 +110,7 @@ const CabinetStudentPage = () => {
           {/* ——— ЛЕВАЯ КОЛОНКА ——— */}
           <div className={classes.left}>
             <img
-              src={"/avatars/StudentAvatarMock.png"}
+              src={"/avatars/studentAvatarMock.png"}
               alt={user.fullName}
               className={classes.avatar}
             />
