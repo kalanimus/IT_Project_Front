@@ -76,6 +76,7 @@ function TeacherSurveys({ surveys }) {
   const [analytics, setAnalytics] = useState(null);
   const [analyticsLoading, setAnalyticsLoading] = useState(false);
   const [analyticsError, setAnalyticsError] = useState("");
+  const navigate = useNavigate();
 
   const handleShowAnalytics = async (survey) => {
     setSelectedSurvey(survey);
@@ -93,6 +94,10 @@ function TeacherSurveys({ surveys }) {
       setAnalyticsError("Ошибка загрузки аналитики");
     }
     setAnalyticsLoading(false);
+  };
+
+  const handleCreateSurvey = () => {
+    navigate("/create-survey");
   };
   return (
     <div className={classes.teacherContainer}>
@@ -125,7 +130,7 @@ function TeacherSurveys({ surveys }) {
             ))
           )}
         </ul>
-        <button className={classes.createBtn}>+ Создать кастомный опрос</button>
+        <button className={classes.createBtn} onClick = {handleCreateSurvey}>+ Создать кастомный опрос</button>
       </div>
       <div className={classes.analyticBlock}>
         {!selectedSurvey && (

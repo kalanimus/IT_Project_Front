@@ -264,3 +264,15 @@ export async function getSurveyAnalytics({ id, group, subject }) {
 export async function completeSurvey(surveyId, payload) {
   return await MyApi.post(`/Surveys/${surveyId}/complete`, payload);
 }
+
+export async function fetchGroups() {
+  return await MyApi.get("/Groups");
+}
+
+export async function fetchSubjects() {
+  return await MyApi.get("/Subjects");
+}
+
+export async function createSurvey(payload) {
+  return await MyApi.post("/Surveys", payload);
+}
