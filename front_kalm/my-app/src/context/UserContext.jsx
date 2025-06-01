@@ -45,8 +45,10 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const login = (token) => {
-    localStorage.setItem("authToken", token);
-    MyApi.setAuthToken(token);
+    localStorage.setItem("authToken", token.token);
+    localStorage.setItem("authTokenExpiration", token.expiration);
+    console.log("UserContext: login", token);
+    MyApi.setAuthToken(token.token);
     setIsLoading(true);
     getMe()
       .then((userData) => {
@@ -63,6 +65,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setUser(initialUser);
     localStorage.removeItem("authToken");
+    localStorage.removeItem("authTokenExpiration");
   };
 
   const refreshUser = async () => {

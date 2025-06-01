@@ -25,8 +25,7 @@ const RegistrationForm = ({ onNeedVerification, onSuccess }) => {
       if (response.requireVerification) {
         onNeedVerification({ login, password });
       } else if (response.token) {
-        const userData = await getMe();
-        user.setUser(userData);
+        user.login({ token: response.token, expiration: response.expiration });
         onSuccess();
       } else {
         setError("Ошибка регистрации");

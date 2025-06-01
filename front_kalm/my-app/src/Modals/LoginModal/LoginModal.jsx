@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import classes from "./LoginModal.module.css";
 import { getMe, login } from "../../api.ts";
 import { useUser } from "../../context/UserContext.jsx";
+import RecoverPasswordModal from "../RecoverPasswordModal/RecoverPasswordModal.jsx";
 
-const LoginModal = ({ onNeedVerification, onSuccess }) => {
+const LoginModal = ({ onNeedVerification, onSuccess, onRecoverPassword }) => {
   const [loginValue, setLoginValue] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const user = useUser();
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,9 +20,7 @@ const LoginModal = ({ onNeedVerification, onSuccess }) => {
       if (response.requireVerification) {
         onNeedVerification({ login: loginValue, password });
       } else if (response.token) {
-        // const userData = await getMe();
-        // user.setUser(userData);
-        user.login(response.token);
+        user.login({ token: response.token, expiration: response.expiration });
         onSuccess();
       } else {
         setError("Неверный логин или пароль");
@@ -43,7 +41,7 @@ const LoginModal = ({ onNeedVerification, onSuccess }) => {
           type="text"
           placeholder="abc23s01"
           value={loginValue}
-          onChange={e => setLoginValue(e.target.value)}
+          onChange={(e) => setLoginValue(e.target.value)}
           required
         />
       </label>
@@ -54,12 +52,14 @@ const LoginModal = ({ onNeedVerification, onSuccess }) => {
           type="password"
           placeholder="qwerty12345"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
       <div className={classes.forgot}>
-        <a href="#" className={classes.forgot_link}>Забыли пароль?</a>
+        <a className={classes.forgotLink} onClick={onRecoverPassword}>
+          Забыли пароль?
+        </a>
       </div>
       <button className={classes.button} type="submit" disabled={loading}>
         {loading ? "Вход..." : "Войти"}

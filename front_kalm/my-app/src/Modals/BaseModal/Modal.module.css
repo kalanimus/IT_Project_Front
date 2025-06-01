@@ -26,6 +26,7 @@
   max-height: 98vh;
   overflow-y: auto;
   box-sizing: border-box;
+  font-family: "MyFontBold";
 }
 
 .closeButton {

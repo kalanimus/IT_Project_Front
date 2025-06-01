@@ -9,6 +9,7 @@ import RegistrationForm from "../../Modals/RegistrationModal/RegistrationModal.j
 import Modal from "../../Modals/BaseModal/Modal.jsx";
 import VerificationModal from "../../Modals/VerificationModal/VerificationModal.jsx";
 import LoginModal from "../../Modals/LoginModal/LoginModal.jsx";
+import RecoverPasswordModal from "../../Modals/RecoverPasswordModal/RecoverPasswordModal.jsx";
 
 const MainPage = (props) => {
   const [modalType, setModalType] = useState(null); // 'register' | 'login' | 'verify'
@@ -87,7 +88,13 @@ const MainPage = (props) => {
               setModalType("verify");
             }}
             onSuccess={goToMainAuthPage}
+            onRecoverPassword={() => setModalType("recover")}
           />
+        </Modal>
+      )}
+      {modalType === "recover" && (
+        <Modal onClose={() => setModalType(null)}>
+          <RecoverPasswordModal onClose={() => setModalType(null)} />
         </Modal>
       )}
     </div>

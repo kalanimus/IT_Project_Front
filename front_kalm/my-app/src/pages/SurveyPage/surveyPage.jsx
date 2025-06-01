@@ -25,7 +25,7 @@ const SurveysPage = () => {
         setSurveys(
           surveysArr.map((s) => ({
             ...s,
-            desc: `${s.group} — ${s.subject}`,
+            desc: `${s.group} — ${s.subject} (${s.author})`,
             status:
               user.roleName === "Студент"
                 ? s.isCompleted

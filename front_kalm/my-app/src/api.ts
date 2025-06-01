@@ -276,3 +276,7 @@ export async function fetchSubjects() {
 export async function createSurvey(payload) {
   return await MyApi.post("/Surveys", payload);
 }
+
+export async function recoverPassword(login: string) {
+  return await MyApi.post("/Auth/recover-password", { username: login });
+}

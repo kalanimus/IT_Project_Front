@@ -64,6 +64,7 @@ a {
     color: #24270d;
     text-decoration: none;
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 a:hover {
