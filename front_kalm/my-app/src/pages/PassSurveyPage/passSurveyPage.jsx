@@ -97,7 +97,6 @@ const PassSurveyPage = () => {
     try {
       await completeSurvey(survey.id, payload);
       
-      // console.log("Отправка ответов:", payload);
       alert("Ответы успешно отправлены!");
       navigate("/survey");
       // Можно сделать редирект или очистку формы

@@ -218,8 +218,6 @@ const CreateSurveyPage = () => {
       navigate("/surveys");
     } catch (e) {
       alert("Ошибка при создании опроса");
-      console.log(e);
-      console.log("Payload:", payload);
     } finally {
       setSending(false);
     }

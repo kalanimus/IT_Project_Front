@@ -47,7 +47,6 @@ export const UserProvider = ({ children }) => {
   const login = (token) => {
     localStorage.setItem("authToken", token.token);
     localStorage.setItem("authTokenExpiration", token.expiration);
-    console.log("UserContext: login", token);
     MyApi.setAuthToken(token.token);
     setIsLoading(true);
     getMe()

@@ -54,7 +54,6 @@ class Api implements IApi {
     get<T>(uri: string) {
     // Формируем headers для каждого запроса как обычный объект
     const headers = { ...(this.options.headers as Record<string, string>) };
-    // console.log('Headers:', headers);
     return fetch(this.baseUrl + uri, {
         ...this.options,
         headers,

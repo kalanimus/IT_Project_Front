@@ -8,10 +8,8 @@ import { useUser } from "../../context/UserContext";
 import coinIcon from "../../assets/icons/coin.png";
 
 const Header = (props) => {
-  // const [user, setUser] = useState([])
   const cookie = Cookies.get("auth");
   const user = useUser();
-  // console.log("user in header", user);
 
 
   return (

@@ -8,7 +8,6 @@ const ProtectedRoute = () => {
 
   if (isLoading) return null; // Можно добавить спиннер
 
-    console.log(user);
   // Если нет пользователя или токен истёк — редирект на главную
   if (!user || isTokenExpired(localStorage.getItem("authTokenExpiration"))) {
     return <Navigate to="/" replace />;
