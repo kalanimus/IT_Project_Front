@@ -16,8 +16,8 @@ const VerificationModal = ({ login, password, onSuccess }) => {
     try {
       const response = await verify(login, password, code);
       if (response.token) {
-        // const userData = await getMe();
-        // user.setUser(userData);
+        const userData = await getMe();
+        user.setUser(userData);
         login(response.token);
         onSuccess();
       } else {
