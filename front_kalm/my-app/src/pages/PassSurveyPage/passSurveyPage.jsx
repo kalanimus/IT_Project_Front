@@ -118,7 +118,7 @@ const PassSurveyPage = () => {
               {part.questions.map((q, qIdx) => (
                 <div className={classes.questionBlock} key={qIdx}>
                   <label className={classes.question}>{q.text}</label>
-                  {q.type === "single_choice" && (
+                  {q.type === "rating" && (
                     <div className={classes.starsRow}>
                       {[1, 2, 3, 4, 5].map((star) => {
                         const key = `${partIdx}_${qIdx}`;
