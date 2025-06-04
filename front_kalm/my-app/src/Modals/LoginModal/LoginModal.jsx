@@ -57,7 +57,7 @@ const LoginModal = ({ onNeedVerification, onSuccess, onRecoverPassword }) => {
         />
       </label>
       <div className={classes.forgot}>
-        <a className={classes.forgotLink} onClick={onRecoverPassword}>
+        <a className={classes.forgot_link} onClick={onRecoverPassword}>
           Забыли пароль?
         </a>
       </div>

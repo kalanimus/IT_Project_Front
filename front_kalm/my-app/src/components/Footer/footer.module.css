@@ -8,7 +8,7 @@
 
 .container_footer {
     display: grid;
-    grid-template-columns: 220px 1.5fr 1fr 1fr 1.5fr;
+    grid-template-columns: 220px 1.5fr 1fr 1.2fr;
     gap: 2.5vw;
     align-items: start;
     padding: 0.5vw 2vw 0 1vw;
@@ -44,51 +44,61 @@
 
 .list_1 {
     font-family: "MyFontRegular";
-    font-size: clamp(16px, 1.3vw, 22px);
+    font-size: clamp(13px, 1vw, 17px); /* уменьшено */
     color: #24270d;
     line-height: 1.4;
     margin-top: 0;
 }
 
-h4 {
+.list_1 h4 {
+    font-family: "MyFontBold";
+    font-size: clamp(15px, 1.2vw, 20px); /* уменьшено */
+    margin-bottom: 0;
+    margin-top: 0;
+    color: #24270d;
+}
+
+.list_contacts {
+    font-family: "MyFontRegular";
+    font-size: clamp(13px, 1vw, 17px); /* уменьшено */
+    color: #24270d;
+    line-height: 1.4;
+}
+
+.list_contacts h4 {
+    font-family: "MyFontBold";
+    font-size: clamp(15px, 1.2vw, 20px); /* уменьшено */
+    margin-bottom: 0;
+    margin-top: 0;
+    color: #24270d;
+}
+
+.list_contacts a {
+    color: #24270d;
+    text-decoration: none;
+    word-break: break-all;
+    transition: color 0.3s;
+    font-size: inherit;
+}
+
+.list_contacts a:hover {
+    text-decoration: underline;
+    color: #535725;
+}
+
+.list_4 {
+    font-family: "MyFontRegular";
+    font-size: clamp(16px, 1.3vw, 22px);
+    color: #24270d;
+    line-height: 1.4;
+}
+
+.list_4 h4 {
     font-family: "MyFontBold";
     font-size: clamp(18px, 1.5vw, 24px);
     margin-bottom: 0;
     margin-top: 0;
     color: #24270d;
-}
-
-a {
-    font-family: "MyFontRegular";
-    font-size: clamp(16px, 1.3vw, 22px);
-    color: #24270d;
-    text-decoration: none;
-    transition: color 0.3s;
-    cursor: pointer;
-}
-
-a:hover {
-    color: #535725;
-}
-
-.list_1 p {
-    font-family: "MyFontBold";
-    font-size: clamp(8px, 1.5vw, 11px);
-    color: #24270d;
-}
-
-.list_2, .list_3, .list_4 {
-    font-family: "MyFontRegular";
-    font-size: clamp(16px, 1.3vw, 22px);
-    color: #24270d;
-    list-style: none;
-    padding: 0;
-    line-height: 1.4;
-    margin: 0;
-}
-
-.list_2 li, .list_3 li {
-    margin-bottom: 0;
 }
 
 .list_4 p {
@@ -97,9 +107,10 @@ a:hover {
     color: inherit;
 }
 
+/* Адаптивность */
 @media (max-width: 1100px) {
     .container_footer {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1.5fr 1fr 1.2fr;
         gap: 1vw;
         padding: 2vw 1vw 0 1vw;
     }
@@ -111,7 +122,7 @@ a:hover {
 
 @media (max-width: 800px) {
     .container_footer {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         gap: 2vw;
     }
@@ -120,23 +131,33 @@ a:hover {
         grid-row: 1/2;
     }
     .list_1 {
-        grid-column: 2/4;
+        grid-column: 2/3;
         grid-row: 1/2;
     }
-    .list_2, .list_3, .list_4 {
+    .list_contacts {
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+    .list_4 {
+        grid-column: 2/3;
         grid-row: 2/3;
     }
 }
 
 @media (max-width: 600px) {
     .container_footer {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(3, auto);
-        gap: 2vw;
-        padding: 2vw 2vw 0 2vw;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+        gap: 16px;
+        padding: 4vw 2vw 2vw 2vw;
     }
-    .logo_block, .list_1, .list_2, .list_3, .list_4 {
-        font-size: 13px;
+    .logo_block,
+    .list_1,
+    .list_contacts,
+    .list_4 {
+        justify-self: start;
+        align-items: flex-start;
+        text-align: left;
     }
     .baumanLogo {
         width: 36px;
