@@ -106,6 +106,8 @@ const SearchPage = () => {
                   <Link
                     to={`/teacher-reviews?fullname=${encodeURIComponent(
                       t.fullName
+                    )}&rating=${encodeURIComponent(
+                      t.rating
                     )}`}
                     className={classes.nameLink}
                   >

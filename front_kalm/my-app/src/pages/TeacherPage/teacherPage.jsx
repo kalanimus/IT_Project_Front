@@ -20,6 +20,7 @@ const TeacherPage = () => {
   const { user, isLoading, refreshUser } = useUser();
   const [searchParams] = useSearchParams();
   const fullname = searchParams.get("fullname") || "";
+  const rating = searchParams.get("rating") || "";
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -59,7 +60,7 @@ const TeacherPage = () => {
         if (page === 1 && data.reviews.length) {
           setTeacherInfo({
             fullName: data.reviews[0].teacherFullName,
-            rating: data.rating,
+            rating: rating,
           });
         }
         // Проставляем лайк/дизлайк для текущего пользователя
@@ -195,7 +196,7 @@ const TeacherPage = () => {
           </div>
           <div className={classes.rating}>
             <img src={starIcon} alt="рейтинг" className={classes.starIcon} />
-            {teacherInfo.rating ? teacherInfo.rating.toFixed(2) : "-"}
+            {teacherInfo.rating ? teacherInfo.rating.toFixed(2) : rating}
           </div>
         </div>
 
