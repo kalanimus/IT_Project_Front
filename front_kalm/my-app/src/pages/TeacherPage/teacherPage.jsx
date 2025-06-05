@@ -196,7 +196,7 @@ const TeacherPage = () => {
           </div>
           <div className={classes.rating}>
             <img src={starIcon} alt="рейтинг" className={classes.starIcon} />
-            {teacherInfo.rating ? teacherInfo.rating.toFixed(2) : rating}
+            {rating}
           </div>
         </div>
 
